@@ -1,44 +1,67 @@
 interface Student {
-    firstname: string,
-    lastname: string,
-    age: number,
-    location: string
+  firstName: string,
+  lastName: string,
+  age: number,
+  location: string
 }
 
-function createStudent(student: Student) {
-    return {
-        firstname: student.firstname,
-        lastname: student.lastname,
-        age: student.age,
-        location: student.location
-    }
+const student1: Student = {
+  firstName: 'Paul',
+  lastName: 'Jerry',
+  age: 27,
+  location: 'Nigeria'
 }
 
-const student1 = createStudent({ firstname: 'Moses', lastname: "Ogbonna", age: 12, location: "Nairobi"})
-const student2 = createStudent({ firstname: 'Donald', lastname: "charles", age: 32, location: "Nigeria"})
+const student2: Student = {
+  firstName: 'Jerry',
+  lastName: 'Parkerson',
+  age: 28,
+  location: 'Edo state'
+}
 
-const studentsList = [ student1, student2 ];
+const studentList: Array<Student> = [student1, student2];
 
-const table = document.createElement("table");
-const trow = document.createElement("tr");
-const trow1 = document.createElement("tr");
-const tdata = document.createElement("td");
-const tdata1 = document.createElement("td");
-const tdata2 = document.createElement("td");
-const tdata3 = document.createElement("td");
+const body: HTMLBodyElement = document.getElementsByTagName("body")[0];
+const table: HTMLTableElement = document.createElement('table');
+const thead: HTMLTableSectionElement = document.createElement('thead');
+const th1: HTMLTableCellElement = document.createElement('th');
+const th2: HTMLTableCellElement = document.createElement('th');
 
-tdata.innerHTML = ;
-tdata1.innerHTML = ;
+th1.innerText = 'First Name';
+th2.innerText = 'Location';
+th1.style.border = '1px solid gray';
+th2.style.border = '1px solid gray';
+th1.style.padding = '.5rem';
+th2.style.padding = '.5rem';
+table.style.border = '1px solid gray';
+table.style.borderCollapse = 'collapse';
 
-trow.appendChild(tdata);
-trow.appendChild(tdata1);
 
-table.appendChild(trow);
 
-tdata2.innerHTML = ;
-tdata3.innerHTML = ;
+thead.append(th1);
+thead.append(th2);
 
-trow1.appendChild(tdata2);
-trow1.appendChild(tdata3);
+table.append(thead);
 
-table.appendChild(trow1);
+
+studentList.forEach((student) => {
+  const row: HTMLTableRowElement = document.createElement('tr');
+
+  const column1: HTMLTableCellElement = document.createElement('td');
+  const column2: HTMLTableCellElement = document.createElement('td');
+
+  column1.innerText = student.firstName;
+  column2.innerText = student.lastName;
+
+  column1.style.border = '1px solid gray';
+  column2.style.border = '1px solid gray';
+  column1.style.padding = '.5rem';
+  column2.style.padding = '.5rem';
+
+  row.append(column1);
+  row.append(column2)
+
+  table.append(row);
+});
+
+body.append(table)
